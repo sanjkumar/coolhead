@@ -1,0 +1,63 @@
+<section class='main-content'>
+  <div class='row'>
+    <div class='span9'>
+      <h4 class='title'><span class='text'><strong>Your</strong> Cart</span></h4>
+      <table class='table table-striped'>
+        <% if @cart.empty? %>
+            <p>
+              Your Cart is empty.
+            </p>
+        <% end %>
+        <% total = 0 %>
+
+
+
+      </table>
+
+      <p class='buttons center'>
+        <button class='btn' type='button'>
+          <%= link_to 'Continue Shopping', :controller => :products %>
+        </button>
+        <button class='btn' type='button'>
+          <%= link_to 'Clear Cart', :controller => 'cart', :action => 'clearCart' %>
+        </button>
+        <button class='btn btn-inverse' type='submit' id='checkout'>
+          <%= link_to 'Check Out', :controller => 'cart', :action => 'createOrder' %>
+        </button>
+      </p>
+      <br />
+      <br />
+      <br />
+
+      <h4>What would you like to do next?</h4>
+      <p>
+        Choose if you have a discount code or reward points you want to use or would like to estimate your delivery cost.
+      </p>
+      <label class='radio'>
+        <input type='radio' name='optionsRadios' id='optionsRadios2' value='option2'>
+        Estimate Shipping &amp; Taxes </label>
+    </div>
+
+    <div class='span3 col'>
+      <div class='block'>
+        <ul class='nav nav-list'>
+          <li class='nav-header'>SUB CATEGORIES</li>
+          <li><a href='/products'>Men</a></li>
+          <li class='active'><a href='/products'>Women</a></li>
+          <li><a href='/products'>Kids</a></li>
+          <li><a href='/products'>Brands</a></li>
+          <li><a href='/products'>Sunglasses</a></li>
+          <li><a href='/products'>Hats</a></li>
+        </ul>
+        <br/>
+        <ul class='nav nav-list below'>
+          <li class='nav-header'>MANUFACTURES</li>
+          <li><a href='/products'>Ray-Ban</a></li>
+          <li><a href='/products'>Prada</a>
+          <li><a href='/products'>QuickSilver</a></li>
+          <li><a href='/products'>Oakley</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

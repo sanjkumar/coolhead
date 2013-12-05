@@ -1,0 +1,87 @@
+<section class='header_text sub'>
+  <%= image_tag 'images/pageBanner.png', class: 'pageBanner', alt: 'Products' %>
+
+  <h4><span>Products Details</span></h4>
+</section>
+<section class="main-content">
+  <div class="row">
+    <div class="span9">
+      <ul class="thumbnails listing-products">
+        <% @products.each do |product| %>
+            <li class="span3">
+              <div class="product-box">
+                <span class="sale_tag"></span>
+                <a href="/products"><%= link_to (image_tag product.image_url, :style => 'height:200px'), product %></a><br/>
+                <a href="/products" class="title"><%= link_to (product.title), product %></a><br/>
+                <a href="/products" class="model"><%= link_to (product.model), product %></a><br/>
+                <a href="/category" class="category">Category</a>
+                <p class="price"><%= number_to_currency(product.price, :unit => '€') %></p>
+                <button class='btn' type='button'>
+                  <a href='/cart/<%= product.id %>'>Add to Cart</a>
+                </button>
+              </div>
+
+
+            <% if current_user.try(:admin?) %>
+
+                <a href='/cart/<%= product.id %>'>Add to Cart</a>
+                <br>
+                <br>
+                <%= link_to t('.edit', :default => t('helpers.links.edit')),
+                            edit_product_path(product), :class => 'btn btn-mini' %>
+                <%= link_to t('.destroy', :default => t('helpers.links.destroy')),
+                            product_path(product), :method => :delete,
+                            :data => {:confirm => t('.confirm', :default => t('helpers.links.confirm',
+                            :default => 'Are you sure?'))}, :class => 'btn btn-mini btn-danger' %>
+            <% end %>
+            </li>
+        <% end %>
+      </ul>
+      <hr>
+      <% if current_user.try(:admin?) %>
+
+          <%= link_to t('.new', :default => t('helpers.links.new')),
+                      new_product_path, :class => 'btn btn-primary' %>
+      <% end %>
+    </div>
+      <div class="span3 col">
+        <div class="block">
+          <ul class="nav nav-list">
+            <li class="nav-header">SUB CATEGORIES</li>
+            <li><a href="products.html">Sunglasses</a></li>
+            <li class="active"><a href="products.html">Hats</a></li>
+            <li><a href="products.html">Men</a></li>
+            <li><a href="products.html">Women</a></li>
+            <li><a href="products.html">Kids</a></li>
+            <li><a href="products.html">Brands</a></li>
+          </ul>
+          <br/>
+          <ul class="nav nav-list below">
+            <li class="nav-header">MANUFACTURES</li>
+            <li><a href="products.html">Prada</a></li>
+            <li><a href="products.html">Oakley</a></li>
+            <li><a href="products.html">Volcom</a></li>
+            <li><a href="products.html">John Deere</a></li>
+          </ul>
+        </div>
+
+        <div class="block">
+          <h4 class="title"><strong>Best</strong> Seller</h4>
+          <ul class="small-product">
+            <li>
+              <%= image_tag '1.jpg', alt:"Ray-ban Cross" %>
+              <a href="#">Ray-Ban Crosshair</a>
+            </li>
+            <li>
+              <%= image_tag '2.jpg', alt:"Ray-Ban Aviator" %>
+              <a href="#">Ray-Ban Aviator</a>
+            </li>
+            <li>
+              <%= image_tag '3.jpg', alt:"Oakley" %>
+              <a href="#">Oakley Big Shade</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+</section>

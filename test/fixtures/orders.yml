@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  order_date: 2013-11-24 15:01:05
+  user: 
+
+two:
+  order_date: 2013-11-24 15:01:05
+  user: 

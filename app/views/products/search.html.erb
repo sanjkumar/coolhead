@@ -1,0 +1,40 @@
+<h1>Search Product Catalog</h1>
+<br />
+<h3>Searching For: <%= @search_term %></h3>
+<table class='catalog'>
+  <% if @products.length == 0 %>
+      <br />
+      <h2>No Products found for this search term!!</h2>
+  <% end %>
+  <% @products.each do |product| %>
+      <tr>
+        <td>
+          <div class='image'>
+            <%= link_to (image_tag product.image_url, :style => 'height:100px'), product %>
+          </div>
+        </td>
+        <td>
+          <div class='title'>
+            <%= link_to product.title, product %>
+          </div>
+          <div class='description'>
+            <%=h product.description %>
+          </div>
+          <div class='price'>
+            <%= number_to_currency(product.price, :unit => '&euro;') %>
+          </div>
+          <div class='links'>
+            <% if session[:login] == 1 %>
+                <%= link_to 'Edit', edit_product_path(product) %> |
+                <%= link_to 'Destroy', product, :confirm => 'Are you sure?', :method => :delete %>
+            <% else %>
+                <a href='/cart/<%= product.id %>'>Add to Cart</a><br><br>
+            <% end %>
+          </div>
+        </td>
+      </tr>
+  <% end %>
+</table>
+<% if session[:login] == 1 %>
+    <p><%= link_to 'New product', new_product_path %></p>
+<% end %>

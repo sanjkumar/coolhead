@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Coolheadz.com</title>
+  <%= stylesheet_link_tag 'application', :media => 'all' %>
+  <%= javascript_include_tag 'https://js.stripe.com/v1/', 'application' %>
+  <%= tag :meta, :name => 'stripe-key', :content => 'STRIPE_PUBLIC_KEY' %>
+  <%= csrf_meta_tags %>
+
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <meta name='description' content=''>
+  <meta name='author' content=''>
+
+  <!-- Bootstrap core CSS -->
+
+  <!-- Just for debugging purposes. Don't actually copy this line! -->
+  <!--[if lt IE 9]>
+  <script src='/docs-assets/js/ie8-responsive-file-warning.js'></script><![endif]-->
+
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src='https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js'></script>
+  <script src='https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js'></script>
+  <![endif]-->
+
+  <!-- Custom styles for this template -->
+
+</head>
+<body>
+<div id='top-bar' class='container'>
+  <div class='row'>
+    <div class='span4'>
+      <div class="searchbox">
+        <%= render :partial => 'products/search' %>
+      </div>
+    </div>
+    <div class='span8'>
+      <div class='account pull-right'>
+        <ul class='user-menu'>
+          <li><%= link_to 'Your Cart', :controller => '/cart', :action => 'index' %></li>
+
+          <% if user_signed_in? %>
+
+              <li>Signed in as <%= current_user.email %></li>
+              <li><%= link_to 'Check Out', :controller => 'cart', :action => 'createOrder' %></li>
+              <li><%= link_to 'My Account', :controller => '/profiles', :action => 'myprofile' %></li>
+              <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
+          <% else %>
+              <li><%= link_to('Login', new_user_session_path) %></li>
+              <li><%= link_to('Register', new_user_registration_path) %> </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div id='wrapper' class='container'>
+  <section class='navbar main-menu'>
+    <div class='navbar-inner main-menu'>
+      <%= link_to (image_tag 'coolhead-logo.jpg', :title => 'Logo image'), controller: '/site', action: :index %>
+      <nav id='menu' class='pull-right'>
+        <ul>
+          <li><a href='products'>Top Seller</a></li>
+          <li><%= link_to 'Products', :controller => 'products', action: :index %></li>
+          <li><a href='products'>Women</a>
+            <ul>
+              <li> <a href='products'>Cap</a></li>
+              <li><a href='products'>Sunglasses</a></li>
+              <li><a href='products'>Hangbag</a></li>
+            </ul>
+          </li>
+          <li><%= link_to 'Brand', :controller => 'brands', action: :index %> </li>
+          <li><a href='/products'>Men</a></li>
+          <li><a href='/products'>Kids</a></li>
+          <li><%= link_to 'About', :controller => '/site', :action => 'about' %> </li>
+
+
+          <li class='dropdown'>
+            <a href='#' class='dropdown-toggle' data-toggle='dropdown'>Category <b class='caret'></b></a>
+            <ul class='dropdown-menu'>
+              <li>
+
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </section>
+
+  <!-- navigation bar ends -->
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+
+  <%= yield %>
+
+
+
+  <!-- side bar cart and search -->
+
+  <!--	<div class='page-header'>-->
+  <!--<div id='cart'>
+  < if @ cart %>
+  < = render @cart %>
+  <  end  > -->
+  <!--</div> -->
+
+  <!-- side bar ends -->
+
+  <!-- FOOTER -->
+  <section id='footer-bar'>
+    <div class='row'>
+      <div class='span3'>
+        <h4>Navigation</h4>
+        <ul class='nav'>
+          <li>
+            <%= link_to 'Home', :controller => '/site', :action => 'index' %>
+          </li>
+          <li>
+            <%= link_to 'About', :controller => '/site', :action => 'about' %>
+          </li>
+          <li>
+            <%= link_to 'Contact us', :controller => '/site', :action => 'contact' %>
+          </li>
+
+          <li>
+            <a href='/cart'>Your Cart</a>
+          </li>
+
+        </ul>
+      </div>
+      <div class='span4'>
+        <h4>My Account</h4>
+        <ul class='nav'>
+
+          <li>
+            <% if user_signed_in? %>
+
+              <li>
+                Signed in as <%= current_user.email %>. Not you?
+              </li>
+              <li>
+                <%= link_to 'Check Out', :controller => 'cart', :action => 'createOrder' %>
+              </li>
+              <li>
+                <%= link_to 'My Account', :controller => '/profiles', :action => 'myprofile' %>
+              </li>
+              <li>
+                <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+              </li>
+              <li>
+                <%= link_to 'Order History', :controller => 'orders', :action => 'index' %>
+              </li>
+              <li>
+                <!-- link_to 'Hi! '  current_ user . full _ name, edit_user_registration_path -->
+              </li>
+          <% else %>
+              <li>
+                <%= link_to('Login', new_user_session_path) %>
+              </li>
+              <li>
+                <%= link_to('Register', new_user_registration_path) %>
+              </li>
+          <% end %>
+
+          <li>
+            <a href='#'>Wish List</a>
+          </li>
+          <li>
+            <a href='#'>Newsletter</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class='span5'>
+        <h4>Services</h4>
+        <ul class='nav'>
+
+          <li>
+            <a href='#'>Wish List</a>
+          </li>
+          <li>
+            <%= link_to 'Order History', :controller => 'orders', :action => 'index' %>
+          </li>
+          <li>
+            <a href='#'>Newsletter</a>
+          </li>
+        </ul>
+      </div>
+      <div class='span2'>
+        <h4>Company</h4>
+        <ul class='nav'>
+          <li>
+        <p class='logo'>
+          <%= link_to (image_tag 'coolhead-logo.jpg', :title => 'Logo image'), controller: '/site', action: :index %>
+        </p>
+          </li>
+        <br />
+        <span class='social_icons'> <a class='facebook' href='#'>Facebook</a>
+          <a class='twitter' href='#'>Twitter</a> <a class='skype' href='#'>Skype</a>
+          <a class='vimeo' href='#'>Vimeo</a> </span>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section id='copyright'>
+    <span>Copyright 2013 Coolheadz. Developed by Sanjeev Kumar  All right reserved.</span>
+  </section>
+</div>
+
+<script type='text/javascript'>
+    $(function () {
+        $(document).ready(function () {
+            $('.flexslider').flexslider({
+                animation: 'fade',
+                slideshowSpeed: 4000,
+                animationSpeed: 600,
+                controlNav: false,
+                directionNav: true,
+                controlsContainer: '.flex-container' // the container that holds the flexslider
+            });
+        });
+    });
+</script>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+</body>
+</html>

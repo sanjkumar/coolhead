@@ -1,0 +1,109 @@
+<section class='header_text sub'>
+  <%= image_tag 'images/pageBanner.png', class: 'pageBanner', alt: 'Products' %>
+
+  <h4><span>Cart Details</span></h4>
+</section>
+<section class='main-content'>
+  <div class='row'>
+    <div class='span9'>
+      <h4 class='title'><span class='text'><strong>Your</strong> Cart</span></h4>
+      <table class='table table-striped'>
+        <% if @cart.empty? %>
+            <p>
+              Your Cart is empty.
+            </p>
+        <% end %>
+        <% total = 0 %>
+
+        <thead>
+        <tr>
+          <th>Image</th>
+          <th>Product Name</th>
+          <th>Unit Price</th>
+          <th>Quantity</th>
+          <th>Total</th>
+          <th>Remove from Cart</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <% @cart.each do | id, quantity | %>
+            <% product = Product.find_by_id(id) %>
+            <tr>
+              <td>
+                <div class='image'>
+                  <%= link_to (image_tag product.image_url, :style => 'height:100px'), product %>
+                </div></td>
+              <td class='title'><%= link_to product.title, product %></td>
+              <td class='price'><%= number_to_currency(product.price, :unit => '€') %></td>
+              <td class='quantity'><%= quantity %>
+                <br />
+              </td>
+              <td class='price'> <%= number_to_currency(quantity * product.price, :unit => '€') %> </td>
+              <td><a href='/cart/remove/<%= product.id %>'>Remove</a></td>
+
+            </tr>
+            <% total += quantity * product.price %>
+        <% end %>
+        <tr>
+          <td colspan='4'>
+            <div class='total'>
+              <strong>Total:</strong>
+            </div></td>
+          <td>
+            <div class='total'>
+              <p class='cart-total right'>
+                <strong><%= number_to_currency(total, :unit => '€') %></strong>
+              </p>
+            </div></td>
+        </tr>
+        </tbody>
+      </table>
+
+      <p class='buttons center'>
+        <button class='btn' type='button'>
+          <%= link_to 'Continue Shopping', :controller => :products %>
+        </button>
+        <button class='btn' type='button'>
+          <%= link_to 'Clear Cart', :controller => 'cart', :action => 'clearCart' %>
+        </button>
+        <button class='btn btn-inverse' type='submit' id='checkout'>
+          <%= link_to 'Check Out', :controller => 'cart', :action => 'createOrder' %>
+        </button>
+      </p>
+      <br />
+      <br />
+      <br />
+
+      <h4>What would you like to do next?</h4>
+      <p>
+        Choose if you have a discount code or reward points you want to use or would like to estimate your delivery cost.
+      </p>
+      <label class='radio'>
+        <input type='radio' name='optionsRadios' id='optionsRadios2' value='option2'>
+        Estimate Shipping &amp; Taxes </label>
+    </div>
+
+    <div class='span3 col'>
+      <div class='block'>
+        <ul class='nav nav-list'>
+          <li class='nav-header'>SUB CATEGORIES</li>
+          <li><a href='/products'>Men</a></li>
+          <li class='active'><a href='/products'>Women</a></li>
+          <li><a href='/products'>Kids</a></li>
+          <li><a href='/products'>Brands</a></li>
+          <li><a href='/products'>Sunglasses</a></li>
+          <li><a href='/products'>Hats</a></li>
+        </ul>
+        <br/>
+        <ul class='nav nav-list below'>
+          <li class='nav-header'>MANUFACTURES</li>
+          <li><a href='/products'>Ray-Ban</a></li>
+          <li><a href='/products'>Prada</a>
+          <li><a href='/products'>QuickSilver</a></li>
+          <li><a href='/products'>Oakley</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
