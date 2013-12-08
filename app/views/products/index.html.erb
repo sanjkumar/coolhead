@@ -1,8 +1,9 @@
 <section class='header_text sub'>
   <%= image_tag 'images/pageBanner.png', class: 'pageBanner', alt: 'Products' %>
 
-  <h4><span>Products Details</span></h4>
+  <h4 class='title'><span class='text'>Product Catalogs</span></h4>
 </section>
+
 <section class="main-content">
   <div class="row">
     <div class="span9">
@@ -21,10 +22,9 @@
                 </button>
               </div>
 
-
             <% if current_user.try(:admin?) %>
 
-                <a href='/cart/<%= product.id %>'>Add to Cart</a>
+
                 <br>
                 <br>
                 <%= link_to t('.edit', :default => t('helpers.links.edit')),
@@ -44,18 +44,19 @@
                       new_product_path, :class => 'btn btn-primary' %>
       <% end %>
     </div>
-      <div class="span3 col">
-        <div class="block">
-          <ul class="nav nav-list">
-            <li class="nav-header">SUB CATEGORIES</li>
-            <li><a href="products.html">Sunglasses</a></li>
-            <li class="active"><a href="products.html">Hats</a></li>
-            <li><a href="products.html">Men</a></li>
-            <li><a href="products.html">Women</a></li>
-            <li><a href="products.html">Kids</a></li>
-            <li><a href="products.html">Brands</a></li>
-          </ul>
+    <div class="span3 col">
+      <div class="block">
+        <ul class="nav nav-list">
+          <li class="nav-header">CATEGORIES</li>
+          <li><%= render '/products/categoryDistinctList' %></li>
+          <!--<li class="active"><a href="products.html">Hats</a></li>-->
           <br/>
+          <li><a href="products.html">Men</a></li>
+          <li><a href="products.html">Women</a></li>
+          <li><a href="products.html">Kids</a></li>
+
+        </ul>
+        <br/>
           <ul class="nav nav-list below">
             <li class="nav-header">MANUFACTURES</li>
             <li><a href="products.html">Prada</a></li>

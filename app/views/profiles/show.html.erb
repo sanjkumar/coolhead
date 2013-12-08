@@ -1,30 +1,57 @@
-<p id="notice"><%= notice %></p>
+<section class='header_text sub'>
+  <%= image_tag 'images/pageBanner.png', class: 'pageBanner', alt: 'Products' %>
 
-<p>
-  <b>Firstname:</b>
-  <%= @profile.firstname %>
-</p>
+  <h4><span>Edit Profile</span></h4>
+</section>
+<section class="main-content">
+  <div class="row">
+    <div class="span9">
+      <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Lastname:</b>
-  <%= @profile.lastname %>
-</p>
+      <p>
+        <b>Firstname:</b>
+        <%= @profile.firstname %>
+      </p>
 
-<p>
-  <b>Address:</b>
-  <%= @profile.address %>
-</p>
+      <p>
+        <b>Lastname:</b>
+        <%= @profile.lastname %>
+      </p>
 
-<p>
-  <b>Mobile:</b>
-  <%= @profile.mobile %>
-</p>
+      <p>
+        <b>Address:</b>
+        <%= @profile.address %>
+      </p>
 
-<p>
-  <b>User:</b>
-  <%= @profile.user %>
-</p>
+      <p>
+        <b>Mobile:</b>
+        <%= @profile.mobile %>
+      </p>
 
+      <%= link_to 'Edit', edit_profile_path(@profile) %> |
+      <%= link_to 'Back', profiles_path %>
 
-<%= link_to 'Edit', edit_profile_path(@profile) %> |
-<%= link_to 'Back', profiles_path %>
+        </div>
+      <div class="span3 col">
+        <div class="block">
+          <ul class="nav nav-list">
+            <% if user_signed_in? %>
+
+                <li>Signed in as <%= current_user.email %></li>
+
+                <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
+                <li><%= link_to 'Change Password', edit_user_registration_path %></li>
+            <% end %>
+
+            <% if current_user.try(:admin?) %>
+                <li class="nav-header">Admin</li>
+                <li>
+                  <%= link_to 'Admin Dashboard', '/admin/dashboard' %>
+                </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+</section>

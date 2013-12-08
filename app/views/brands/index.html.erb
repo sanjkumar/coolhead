@@ -1,7 +1,7 @@
 <section class='header_text sub'>
   <%= image_tag 'images/pageBanner.png', class: 'pageBanner', alt: 'Products' %>
 
-  <h4><span>Products Details</span></h4>
+  <h4 class='title'><span class='text'>Brands</span></h4>
 </section>
 <section class="main-content">
   <div class="row">
@@ -12,7 +12,9 @@
               <div class="brand-box">
                 <span class="sale_tag"></span>
 
+                <a href="/brands" class="image"><%= link_to (image_tag 'brand.image_url', :style => 'height:200px'), brand %></a><br/>
                 <a href="/brands" class="title"><%= link_to (brand.name), brand %></a><br/>
+
 
               </div>
 
@@ -40,7 +42,7 @@
     <div class="span3 col">
       <div class="block">
         <ul class="nav nav-list">
-          <li class="nav-header">SUB CATEGORIES</li>
+          <li class="nav-header">CATEGORIES</li>
           <li><a href="brands.html">Sunglasses</a></li>
           <li class="active"><a href="brands.html">Hats</a></li>
           <li><a href="brands.html">Men</a></li>

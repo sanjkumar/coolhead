@@ -1,8 +1,11 @@
-class OrdersController < ActionController::Base
+class OrdersController < ApplicationController
+  before_filter :ensure_admin, :except => [:index, :show]
+
   # GET /orders
   # GET /orders.json
   def index
     @orders = Order.all
+    @orders = Order.order('order_date DESC')
 
     respond_to do |format|
       format.html # index.html.erb
@@ -25,12 +28,6 @@ class OrdersController < ActionController::Base
   # GET /orders/new.json
   def new
 
-    @cart = current_cart
-    if @cart.orderproduct.empty?
-      redirect_to store_url, :notice => 'Your cart is empty'
-    return
-    end
-
     @order = Order.new
 
     respond_to do |format|
@@ -48,9 +45,14 @@ class OrdersController < ActionController::Base
   # POST /orders.json
   def create
     @order = Order.new(params[:order])
+    @order.add_orderproduct_from_cart(current_cart)
+
 
     respond_to do |format|
       if @order.save
+        Cart.destroy(session[:cart_id])
+        session[:cart_id] = nil
+
         format.html do
           redirect_to @order, notice: 'Order was successfully created.'
         end

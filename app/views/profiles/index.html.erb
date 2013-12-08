@@ -1,31 +1,61 @@
-<h1>Listing profiles</h1>
+<section class='header_text sub'>
+  <%= image_tag 'images/pageBanner.png', class: 'pageBanner', alt: 'Products' %>
 
-<table>
-  <tr>
-    <th>Firstname</th>
-    <th>Lastname</th>
-    <th>Address</th>
-    <th>Mobile</th>
-    <th>User</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+  <h4><span>User Profile</span></h4>
+</section>
+<section class="main-content">
+  <div class="row">
+    <div class="span9">
 
-<% @profiles.each do |profile| %>
-  <tr>
-    <td><%= profile.firstname %></td>
-    <td><%= profile.lastname %></td>
-    <td><%= profile.address %></td>
-    <td><%= profile.mobile %></td>
-    <td><%= profile.user %></td>
-    <td><%= link_to 'Show', profile %></td>
-    <td><%= link_to 'Edit', edit_profile_path(profile) %></td>
-    <td><%= link_to 'Destroy', profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+      <% if current_user.try(:admin?) %>
+          <table>
+            <tr>
+              <th>Firstname</th>
+              <th>Lastname</th>
+              <th>Address</th>
+              <th>Mobile</th>
 
-<br />
+              <th></th>
+              <th></th>
+              <th></th>
+            </tr>
 
-<%= link_to 'New Profile', new_profile_path %>
+            <% @profiles.each do |profile| %>
+                <tr>
+
+                  <td><a href="/profiles" class="title"><%= link_to (profile.firstname), profile %></a></td>
+                  <td><a href="/profiles" class="title"><%= link_to (profile.lastname), profile %></a><br/></td>
+                  <td><%= profile.address %></td>
+                  <td><%= profile.mobile %></td>
+
+                  <td><%= link_to 'Show', profile %></td>
+                  <td><%= link_to 'Edit', edit_profile_path(profile) %></td>
+                  <td><%= link_to 'Destroy', profile, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+            <% end %>
+            </tr>
+
+          </table>
+
+          <br/>
+
+          <p>
+            Only Admin allow this page. Please check ask admin or login with your admin
+            <%= link_to('Login', new_user_session_path) %>
+          </p>
+      <% end %>
+    </div>
+    <div class="span3 col">
+      <div class="block">
+        <ul class="nav nav-list">
+          <% if current_user.try(:admin?) %>
+              <li class="nav-header">Admin</li>
+              <li>
+                <%= link_to 'Admin Dashboard', '/admin/dashboard' %>
+              </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>

@@ -1,6 +1,36 @@
-<h1>Editing profile</h1>
+<section class='header_text sub'>
+  <%= image_tag 'images/pageBanner.png', class: 'pageBanner', alt: 'Products' %>
 
+  <h4><span>Edit Profile</span></h4>
+</section>
+<section class="main-content">
+  <div class="row">
+    <div class="span9">
 <%= render 'form' %>
 
 <%= link_to 'Show', @profile %> |
 <%= link_to 'Back', profiles_path %>
+    </div>
+    <div class="span3 col">
+      <div class="block">
+        <ul class="nav nav-list">
+          <% if user_signed_in? %>
+
+              <li>Signed in as <%= current_user.email %></li>
+
+              <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
+              <li><%= link_to 'Change Password', edit_user_registration_path %></li>
+          <% end %>
+
+          <% if current_user.try(:admin?) %>
+              <li class="nav-header">Admin</li>
+              <li>
+                <%= link_to 'Admin Dashboard', '/admin/dashboard' %>
+              </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</section>

@@ -13,5 +13,11 @@ class Product < ActiveRecord::Base
   has_many :orders, :through => :orderproducts
 
   has_and_belongs_to_many :brands
+  belongs_to :categories
+
+
+  #scope :by_category_id, lambda {|cid| joins(:categories).where(['categories.id =?', cid])}
+
+
   
 end

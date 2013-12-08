@@ -1,10 +1,13 @@
 <section class='header_text sub'>
   <%= image_tag 'images/pageBanner.png', class: 'pageBanner', alt: 'Products' %>
 
-  <h4><span>Products Details</span></h4>
+  <h4 class='title'><span class='text'>Products Details</span></h4>
 </section>
+<h4><span>Order Listing</span></h4>
 
-<h1>Listing orders</h1>
+<section class="main-content">
+  <div class="row">
+    <div class="span9">
 
 <table>
   <tr>
@@ -19,13 +22,61 @@
   <tr>
     <td><%= order.order_date %></td>
     <td><%= order.user %></td>
+    <% if current_user.try(:admin?) %>
     <td><%= link_to 'Show', order %></td>
     <td><%= link_to 'Edit', edit_order_path(order) %></td>
     <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
   </tr>
 <% end %>
 </table>
 
 <br />
+      <% if current_user.try(:admin?) %>
+           <%= link_to 'New Order', new_order_path %>
+      <% end %>
 
-<%= link_to 'New Order', new_order_path %>
+</div>
+<div class="span3 col">
+  <div class="block">
+    <ul class="nav nav-list">
+      <li class="nav-header">CATEGORIES</li>
+      <li><%= render '/products/categoryDistinctList' %></li>
+
+      <li class="active"><a href="products.html">Hats</a></li>
+      <li><a href="products.html">Men</a></li>
+      <li><a href="products.html">Women</a></li>
+      <li><a href="products.html">Kids</a></li>
+      <li><a href="products.html">Brands</a></li>
+    </ul>
+    <br/>
+    <ul class="nav nav-list below">
+      <li class="nav-header">Brands</li>
+      <li><a href="/products">Prada</a></li>
+      <li><a href="products.html">Oakley</a></li>
+      <li><a href="products.html">Volcom</a></li>
+      <li><a href="products.html">John Deere</a></li>
+    </ul>
+  </div>
+
+  <div class="block">
+    <h4 class="title"><strong>Best</strong> Seller</h4>
+    <ul class="small-product">
+      <li>
+        <%= image_tag '1.jpg', alt: 'Ray-ban Cross' %>
+        <a href="#">Ray-Ban Crosshair</a>
+      </li>
+      <li>
+        <%= image_tag '2.jpg', alt: 'Ray-Ban Aviator' %>
+        <a href="#">Ray-Ban Aviator</a>
+      </li>
+      <li>
+        <%= image_tag '3.jpg', alt: 'Oakley' %>
+        <a href="#">Oakley Big Shade</a>
+      </li>
+    </ul>
+  </div>
+</div>
+</div>
+</section>
+

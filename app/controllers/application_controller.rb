@@ -5,4 +5,12 @@ class ApplicationController < ActionController::Base
     '/myprofile'
   end
 
+
+  # @return [ensure_admin]
+  def ensure_admin
+    unless current_user && current_user.admin?
+      render :text => 'Access Error Message', :status => :unauthorized
+    end
+  end
+
 end

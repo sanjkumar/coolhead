@@ -9,9 +9,16 @@
             </p>
         <% end %>
         <% total = 0 %>
+      </table>
 
+      <table class='table table-bordered'>
+        <%= render(@cart.createOrder) %>
 
-
+        </tr>
+      </table>
+      <table class='table table-bordered'>
+        <th>Total Price</th>
+        <td><%= number_to_currency(@cart.total_price, :unit => '€') %></td>
       </table>
 
       <p class='buttons center'>

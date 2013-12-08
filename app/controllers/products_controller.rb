@@ -3,13 +3,14 @@ class ProductsController < ApplicationController
 #before_filter :authenticate_user!
 #before_filter :ensure_admin, :only => [:new, :create, :edit, :destroy]
 
-  before_filter :ensure_admin, :except => [:index, :show, :search]
+  before_filter :ensure_admin, :except => [:index, :show, :category, :search]
 
   # GET /products
   # GET /products.json
   def index
     @products = Product.all
-
+    @products = Product.order('title ASC')
+    @products = @products.by_category_id(params[:cat]) if params[:cat].present?
 
     respond_to do |format|
       format.html # index.html.erb
@@ -33,6 +34,10 @@ class ProductsController < ApplicationController
   def new
     @product = Product.new
 
+    #@product.assign_attributes({ :category_ids => [1,2], :name => 'hello' })
+    #@product.category_ids # => []
+    #@article.name # => 'hello'
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @product }
@@ -48,6 +53,8 @@ class ProductsController < ApplicationController
   # POST /products.json
   def create
     @product = Product.new(params[:product])
+    @product.category = Category.find(params[:id]) if params[:id]
+    #@product = current_user.products.build(params[:product])
 
     respond_to do |format|
       if @product.save
@@ -99,12 +106,21 @@ class ProductsController < ApplicationController
     end
   end
 
-  # @return [ensure_admin]
-  def ensure_admin
-    unless current_user && current_user.admin?
-      render :text => 'Access Error Message', :status => :unauthorized
+  def category
+    @products = Product.find_all_by_category(params[:id])
+    @category = params[:id]
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @products }
     end
   end
 
+  def who_bought
+    @product = Product.find(params[:id])
+    respond_to do |format|
+      format.atom
+      format.xml { render :xml => @product }
+    end
+  end
 
 end
