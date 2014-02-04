@@ -1,10 +1,7 @@
 class ProfilesController < ApplicationController
 
-<<<<<<< HEAD
- # before_filter :ensure_admin, :except => [:index, :show]
-=======
+
   before_filter :ensure_admin, :except => [:index, :show]
->>>>>>> 3b2aca57d1ff0de88236d44881cdb2f2a8a6ed52
 
   # GET /profiles
   # GET /profiles.json

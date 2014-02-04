@@ -122,11 +122,5 @@ class ProductsController < ApplicationController
       format.xml { render :xml => @product }
     end
   end
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> 3b2aca57d1ff0de88236d44881cdb2f2a8a6ed52
 
 end

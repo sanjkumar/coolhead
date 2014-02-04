@@ -35,16 +35,12 @@
       <%= f.text_field :category, :class => 'text_field' %>
     </div>
   </div>
-<<<<<<< HEAD
-    <div class="control-group"></div>
-        <%= f.association :categories, :as => :check_boxes %>
-=======
     <div class="field">
     <% Category.all.each do |category| %>
         <%= check_box_tag 'product[category_ids][]', category.id %>
         <%= label_tag dom_id(category), category.name %><br>
     <% end %>
->>>>>>> 3b2aca57d1ff0de88236d44881cdb2f2a8a6ed52
+
     </div>
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>

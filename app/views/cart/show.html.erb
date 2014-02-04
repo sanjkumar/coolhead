@@ -11,16 +11,16 @@
         <% total = 0 %>
       </table>
 
-<<<<<<< HEAD
+
         <ul>
           <% @cart.line_items.each do |item| %>
               <li><%= item.quantity %> &times; <%= item.product.title %></li>
         <% end %>
         </ul>
-=======
+
       <table class='table table-bordered'>
         <%= render(@cart.createOrder) %>
->>>>>>> 3b2aca57d1ff0de88236d44881cdb2f2a8a6ed52
+
 
         </tr>
       </table>

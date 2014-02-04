@@ -1,22 +1,18 @@
 class BrandsController < ApplicationController
 
-<<<<<<< HEAD
-  # before_filter :ensure_admin, :except => [:index, :show]
-=======
+
   before_filter :ensure_admin, :except => [:index, :show]
->>>>>>> 3b2aca57d1ff0de88236d44881cdb2f2a8a6ed52
+
 
   # GET /brands
   # GET /brands.json
   def index
     @brands = Brand.all
     @brands = Brand.order('name ASC')
-<<<<<<< HEAD
+
     @products = Product.find_all_by_category(params[:id])
     @category = params[:id]
-=======
 
->>>>>>> 3b2aca57d1ff0de88236d44881cdb2f2a8a6ed52
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @brands }
@@ -55,10 +51,7 @@ class BrandsController < ApplicationController
   def create
     @brand = Brand.new(params[:brand])
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 3b2aca57d1ff0de88236d44881cdb2f2a8a6ed52
     respond_to do |format|
       if @brand.save
         format.html { redirect_to @brand, notice: 'Brand was successfully created.' }
@@ -98,9 +91,5 @@ class BrandsController < ApplicationController
     end
   end
 
+end
 
-<<<<<<< HEAD
-end
-=======
-end
->>>>>>> 3b2aca57d1ff0de88236d44881cdb2f2a8a6ed52

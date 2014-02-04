@@ -1,22 +1,14 @@
 <section class='header_text sub'>
   <%= image_tag 'images/pageBanner.png', class: 'pageBanner', alt: 'Products' %>
 
-<<<<<<< HEAD
-  <h4 class='title'><span class='text'>Products by Category</span></h4>
-=======
   <h4 class='title'><span class='text'>Product by Category</span></h4>
   <h3><span><%= @category %></span></h3>
->>>>>>> 3b2aca57d1ff0de88236d44881cdb2f2a8a6ed52
 </section>
 <section class="main-content">
   <div class="row">
     <div class="span9">
       <ul class="thumbnails listing-products">
-<<<<<<< HEAD
-        <center><h4><span><%= @category %></span></h4></center>
-=======
 
->>>>>>> 3b2aca57d1ff0de88236d44881cdb2f2a8a6ed52
 
         <% @products.each do |product| %>
             <li class="span3">
@@ -25,12 +17,10 @@
                 <a href="/products"><%= link_to (image_tag product.image_url, :style => 'height:200px'), product %></a><br/>
                 <a href="/products" class="title"><%= link_to (product.title), product %></a><br/>
                 <a href="/products" class="model"><%= link_to (product.model), product %></a><br/>
-<<<<<<< HEAD
-                <a href="/category" class="category">Category</a>
-=======
+
                 <a href="/category" class="category"><%= link_to (product.category), product %></a>
 
->>>>>>> 3b2aca57d1ff0de88236d44881cdb2f2a8a6ed52
+
                 <p class="price"><%= number_to_currency(product.price, :unit => '€') %></p>
                 <button class='btn' type='button'>
                   <a href='/cart/<%= product.id %>'>Add to Cart</a>
@@ -39,11 +29,7 @@
 
               <% if current_user.try(:admin?) %>
 
-<<<<<<< HEAD
-                  <a href='/cart/<%= product.id %>'>Add to Cart</a>
-=======
 
->>>>>>> 3b2aca57d1ff0de88236d44881cdb2f2a8a6ed52
                   <br>
                   <br>
                   <%= link_to t('.edit', :default => t('helpers.links.edit')),
