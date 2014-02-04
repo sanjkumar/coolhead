@@ -44,7 +44,11 @@
           <% if user_signed_in? %>
 
               <li>Signed in as <%= current_user.email %></li>
+<<<<<<< HEAD
               <li><%= link_to 'Check Out', :controller => '/cart', :action => 'createOrder' %></li>
+=======
+              <li><%= link_to 'Check Out', :controller => 'orders', :action => 'new' %></li>
+>>>>>>> 3b2aca57d1ff0de88236d44881cdb2f2a8a6ed52
               <li><%= link_to 'My Account', :controller => '/profiles', :action => 'myprofile' %></li>
               <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
           <% else %>
@@ -62,10 +66,17 @@
       <%= link_to (image_tag 'coolhead-logo.jpg', :title => 'Logo image'), controller: '/site', action: :index %>
       <nav id='menu' class='pull-right'>
         <ul>
+<<<<<<< HEAD
           <li><%= link_to 'Home', :controller => '/site', :action => 'index' %> </li>
           <li><a href='/products'>Top Seller</a></li>
           <li><%= link_to 'Products', :controller => '/products', action: :index %></li>
           <!--<li><a href='products'>Women</a>
+=======
+          <li><a href='/products'>Top Seller</a></li>
+          <li><%= link_to 'Products', :controller => '/products', action: :index %></li>
+
+          <li><a href='products'>Women</a>
+>>>>>>> 3b2aca57d1ff0de88236d44881cdb2f2a8a6ed52
             <ul>
               <li> <a href='products'>Cap</a></li>
               <li><a href='products'>Sunglasses</a></li>
@@ -73,7 +84,13 @@
             </ul>
           </li>
           <li><a href='/products'>Men</a></li>
+<<<<<<< HEAD
           <li><a href='/products'>Kids</a></li>-->
+=======
+          <li><a href='/products'>Kids</a></li>
+          <li><%= link_to 'Brand', :controller => '/brands', action: :index %> </li>
+          <li><%= link_to 'About', :controller => '/site', :action => 'about' %> </li>
+>>>>>>> 3b2aca57d1ff0de88236d44881cdb2f2a8a6ed52
           <li class='dropdown'>
             <a href='#' class='dropdown-toggle' data-toggle='dropdown'>Category <b class='caret'></b></a>
             <ul class='dropdown-menu'>
@@ -127,6 +144,7 @@
             <%= link_to 'Contact us', :controller => '/site', :action => 'contact' %>
           </li>
           <li>
+<<<<<<< HEAD
             <%= link_to 'Safe Shopping', :controller => '/site', :action => 'safe_shopping' %>
           </li>
           <li>
@@ -135,6 +153,11 @@
           <li>
             <%= link_to 'Delivery Services', :controller => '/site', :action => 'delivery_returns' %>
           </li>
+=======
+            <%= link_to 'Delivery Services', :controller => '/site', :action => 'safe_shopping' %>
+          </li>
+
+>>>>>>> 3b2aca57d1ff0de88236d44881cdb2f2a8a6ed52
           <li>
             <a href='/cart'>Your Cart</a>
           </li>
@@ -191,7 +214,11 @@
             <%= render '/products/categoryDistinctList' %>
           </li>
           <li>
+<<<<<<< HEAD
             <%= link_to 'Brands', :controller => '/brands', :action => 'index' %>
+=======
+            <%= link_to 'Order History', :controller => '/orders', :action => 'index' %>
+>>>>>>> 3b2aca57d1ff0de88236d44881cdb2f2a8a6ed52
           </li>
           <li>
             <a href='#'>Sub Categories</a>

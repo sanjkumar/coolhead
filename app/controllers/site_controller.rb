@@ -10,6 +10,15 @@ class SiteController < ApplicationController
   end
 
   def safe_shopping
+<<<<<<< HEAD
+=======
+  end
+
+  def delivery_returns
+  end
+
+  def privacy_policy
+>>>>>>> 3b2aca57d1ff0de88236d44881cdb2f2a8a6ed52
   end
 
   def delivery_returns

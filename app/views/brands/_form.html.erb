@@ -1,7 +1,7 @@
 <%= form_for(@brand) do |f| %>
   <% if @brand.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@brand.errors.count, "error") %> prohibited this brand from being saved:</h2>
+      <h2><%= pluralize(@brand.errors.count, 'error') %> prohibited this brand from being saved:</h2>
 
       <ul>
       <% @brand.errors.full_messages.each do |msg| %>
@@ -15,6 +15,7 @@
     <%= f.label :name %><br />
     <%= f.text_field :name %>
   </div>
+<<<<<<< HEAD
   <div class="field">
     <%= f.label :image_url %><br />
     <%= f.text_field :image_url %>
@@ -23,6 +24,12 @@
     <%= f.label :products %><br />
     <%= f.text_field :products %>
   </div>
+=======
+    <div class="field">
+      <%= f.label :image_url %><br />
+      <%= f.text_field :image_url %>
+    </div>
+>>>>>>> 3b2aca57d1ff0de88236d44881cdb2f2a8a6ed52
   <div class="actions">
     <%= f.submit %>
   </div>

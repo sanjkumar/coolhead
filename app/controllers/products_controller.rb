@@ -34,6 +34,10 @@ class ProductsController < ApplicationController
   def new
     @product = Product.new
 
+    #@product.assign_attributes({ :category_ids => [1,2], :name => 'hello' })
+    #@product.category_ids # => []
+    #@article.name # => 'hello'
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @product }
@@ -49,6 +53,8 @@ class ProductsController < ApplicationController
   # POST /products.json
   def create
     @product = Product.new(params[:product])
+    @product.category = Category.find(params[:id]) if params[:id]
+    #@product = current_user.products.build(params[:product])
 
     respond_to do |format|
       if @product.save
@@ -116,8 +122,11 @@ class ProductsController < ApplicationController
       format.xml { render :xml => @product }
     end
   end
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> 3b2aca57d1ff0de88236d44881cdb2f2a8a6ed52
 
 end

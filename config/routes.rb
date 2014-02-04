@@ -8,6 +8,7 @@ Coolheadz::Application.routes.draw do
   resources :profiles
   resources :products
   resources :brands
+  resources :categories
 
   devise_for :users do
     resources :orders
@@ -29,10 +30,14 @@ Coolheadz::Application.routes.draw do
   get 'site/delivery_returns'
   get 'site/privacy_policy'
   get 'site/safe_shopping'
+<<<<<<< HEAD
   get 'site/thank_you'
 
   get 'orders/shipped_edit'
   get 'orders/shipped'
+=======
+
+>>>>>>> 3b2aca57d1ff0de88236d44881cdb2f2a8a6ed52
   get 'orderproducts/index'
   get 'orderproducts/new'
   get 'orderproducts/show'
@@ -50,6 +55,7 @@ Coolheadz::Application.routes.draw do
 
   match '/about' => 'site#about'
   match '/contact' => 'site#contact'
+<<<<<<< HEAD
   match '/thank_you' => 'site#thank_you'
   match '/delivery_returns' => 'site#delivery_returns'
   match '/privacy_policy' => 'site#privacy_policy'
@@ -57,8 +63,16 @@ Coolheadz::Application.routes.draw do
 
   match '/orders/shipped' => 'orders#shipped'
   match '/category/:id' => 'products#category'
+=======
+  match '/delivery_returns' => 'site#delivery_returns'
+  match '/privacy_policy' => 'site#privacy_policy'
+  match '/safe_shopping' => 'site#safe_shopping'
+>>>>>>> 3b2aca57d1ff0de88236d44881cdb2f2a8a6ed52
 
+  match '/search' => 'products#search'
+  match '/category/:id' => 'products#category'
 
+  #get 'home/index'
 
 
   # The priority is based upon order of creation:

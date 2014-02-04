@@ -1,8 +1,13 @@
 <section class='header_text sub'>
   <%= image_tag 'images/pageBanner.png', class: 'pageBanner', alt: 'Products' %>
 
+<<<<<<< HEAD
   <h4 class='title'><span class='text'>Products Details</span></h4>
+=======
+  <h4 class='title'><span class='text'>Product Catalogs</span></h4>
+>>>>>>> 3b2aca57d1ff0de88236d44881cdb2f2a8a6ed52
 </section>
+
 <section class="main-content">
   <div class="row">
     <div class="span9">
@@ -23,7 +28,7 @@
 
             <% if current_user.try(:admin?) %>
 
-                <a href='/cart/<%= product.id %>'>Add to Cart</a>
+
                 <br>
                 <br>
                 <%= link_to t('.edit', :default => t('helpers.links.edit')),

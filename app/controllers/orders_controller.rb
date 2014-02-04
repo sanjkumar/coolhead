@@ -1,11 +1,19 @@
 class OrdersController < ApplicationController
+<<<<<<< HEAD
   #before_filter :ensure_admin, :except => [:new, :show]
+=======
+  before_filter :ensure_admin, :except => [:index, :show]
+>>>>>>> 3b2aca57d1ff0de88236d44881cdb2f2a8a6ed52
 
   # GET /orders
   # GET /orders.json
   def index
     @orders = Order.all
+<<<<<<< HEAD
     @orders = Order.order('order_date ASC')
+=======
+    @orders = Order.order('order_date DESC')
+>>>>>>> 3b2aca57d1ff0de88236d44881cdb2f2a8a6ed52
 
     respond_to do |format|
       format.html # index.html.erb
@@ -45,11 +53,20 @@ class OrdersController < ApplicationController
   # POST /orders.json
   def create
     @order = Order.new(params[:order])
+<<<<<<< HEAD
     #@order.add_orderproduct_from_cart(current_cart)
+=======
+    @order.add_orderproduct_from_cart(current_cart)
+>>>>>>> 3b2aca57d1ff0de88236d44881cdb2f2a8a6ed52
 
 
     respond_to do |format|
       if @order.save
+<<<<<<< HEAD
+=======
+        Cart.destroy(session[:cart_id])
+        session[:cart_id] = nil
+>>>>>>> 3b2aca57d1ff0de88236d44881cdb2f2a8a6ed52
 
         format.html do
           redirect_to @order, notice: 'Order was successfully created.'
