@@ -16,20 +16,3 @@
 //= require_tree .
 //= require twitter/bootstrap
 
-<<<<<<< HEAD
-/*
-=======
-
->>>>>>> 3b2aca57d1ff0de88236d44881cdb2f2a8a6ed52
-$(document).ready(function(){
-    $('.navbar .dropdown').hover(function() {
-        $(this).find('.dropdown-menu').first().stop(true, true).delay(250).slideDown();
-    }, function() {
-        $(this).find('.dropdown-menu').first().stop(true, true).delay(100).slideUp()
-    });
-<<<<<<< HEAD
-    n})
-    */
-=======
-    n})
->>>>>>> 3b2aca57d1ff0de88236d44881cdb2f2a8a6ed52
