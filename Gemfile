@@ -9,6 +9,7 @@ gem 'sqlite3'
 gem 'devise', '~> 3.1.1'
 gem 'twitter-bootstrap-rails'
 gem 'activeadmin'
+gem 'stripe'
 
 # Gems used only for assets and not required
 # in production environments by default.

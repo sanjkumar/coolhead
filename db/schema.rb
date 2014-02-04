@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131205140938) do
+ActiveRecord::Schema.define(:version => 20131214124028) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -48,8 +48,31 @@ ActiveRecord::Schema.define(:version => 20131205140938) do
 
   create_table "brands", :force => true do |t|
     t.string   "name"
+    t.string   "image_url"
+    t.integer  "products_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "brands", ["products_id"], :name => "index_brands_on_products_id"
+
+  create_table "carts", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "categories", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "line_items", :force => true do |t|
+    t.integer  "product_id"
+    t.integer  "cart_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "quantity"
   end
 
   create_table "orderitems", :force => true do |t|
@@ -81,8 +104,15 @@ ActiveRecord::Schema.define(:version => 20131205140938) do
   create_table "orders", :force => true do |t|
     t.datetime "order_date"
     t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.string   "name"
+    t.string   "email"
+    t.string   "pay_type"
+    t.string   "status"
+    t.integer  "card_number"
+    t.date     "expiry_date"
+    t.integer  "cvc"
   end
 
   add_index "orders", ["user_id"], :name => "index_orders_on_user_id"

@@ -44,7 +44,7 @@
           <% if user_signed_in? %>
 
               <li>Signed in as <%= current_user.email %></li>
-              <li><%= link_to 'Check Out', :controller => 'cart', :action => 'createOrder' %></li>
+              <li><%= link_to 'Check Out', :controller => '/cart', :action => 'createOrder' %></li>
               <li><%= link_to 'My Account', :controller => '/profiles', :action => 'myprofile' %></li>
               <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
           <% else %>
@@ -62,40 +62,42 @@
       <%= link_to (image_tag 'coolhead-logo.jpg', :title => 'Logo image'), controller: '/site', action: :index %>
       <nav id='menu' class='pull-right'>
         <ul>
-          <li><a href='products'>Top Seller</a></li>
-          <li><%= link_to 'Products', :controller => 'products', action: :index %></li>
-          <li><a href='products'>Women</a>
+          <li><%= link_to 'Home', :controller => '/site', :action => 'index' %> </li>
+          <li><a href='/products'>Top Seller</a></li>
+          <li><%= link_to 'Products', :controller => '/products', action: :index %></li>
+          <!--<li><a href='products'>Women</a>
             <ul>
               <li> <a href='products'>Cap</a></li>
               <li><a href='products'>Sunglasses</a></li>
               <li><a href='products'>Hangbag</a></li>
             </ul>
           </li>
-          <li><%= link_to 'Brand', :controller => 'brands', action: :index %> </li>
           <li><a href='/products'>Men</a></li>
-          <li><a href='/products'>Kids</a></li>
-          <li><%= link_to 'About', :controller => '/site', :action => 'about' %> </li>
-
-
+          <li><a href='/products'>Kids</a></li>-->
           <li class='dropdown'>
             <a href='#' class='dropdown-toggle' data-toggle='dropdown'>Category <b class='caret'></b></a>
             <ul class='dropdown-menu'>
               <li>
-
+                <%= render '/products/categoryDistinctList' %>
               </li>
             </ul>
           </li>
+          <li><%= link_to 'Brand', :controller => '/brands', action: :index %> </li>
+          <li><%= link_to 'About', :controller => '/site', :action => 'about' %> </li>
         </ul>
       </nav>
     </div>
   </section>
 
   <!-- navigation bar ends -->
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
+  <div class='container'>
+<% if  flash[:notice] %>
+     <p class="notice"><%= notice %></p>
+     <p class="alert"><%= alert %></p>
+ <% end %>
+</div>
 
   <%= yield %>
-
 
 
   <!-- side bar cart and search -->
@@ -124,7 +126,15 @@
           <li>
             <%= link_to 'Contact us', :controller => '/site', :action => 'contact' %>
           </li>
-
+          <li>
+            <%= link_to 'Safe Shopping', :controller => '/site', :action => 'safe_shopping' %>
+          </li>
+          <li>
+            <%= link_to 'Privacy Policy', :controller => '/site', :action => 'privacy_policy' %>
+          </li>
+          <li>
+            <%= link_to 'Delivery Services', :controller => '/site', :action => 'delivery_returns' %>
+          </li>
           <li>
             <a href='/cart'>Your Cart</a>
           </li>
@@ -139,10 +149,10 @@
             <% if user_signed_in? %>
 
               <li>
-                Signed in as <%= current_user.email %>. Not you?
+                <%= current_user.email %>
               </li>
               <li>
-                <%= link_to 'Check Out', :controller => 'cart', :action => 'createOrder' %>
+                <%= link_to 'Check Out', :controller => '/cart', :action => 'createOrder' %>
               </li>
               <li>
                 <%= link_to 'My Account', :controller => '/profiles', :action => 'myprofile' %>
@@ -151,7 +161,7 @@
                 <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
               </li>
               <li>
-                <%= link_to 'Order History', :controller => 'orders', :action => 'index' %>
+                <%= link_to 'Order History', :controller => '/orders', :action => 'index' %>
               </li>
               <li>
                 <!-- link_to 'Hi! '  current_ user . full _ name, edit_user_registration_path -->
@@ -175,17 +185,16 @@
       </div>
 
       <div class='span5'>
-        <h4>Services</h4>
+        <h4>Category</h4>
         <ul class='nav'>
-
           <li>
-            <a href='#'>Wish List</a>
+            <%= render '/products/categoryDistinctList' %>
           </li>
           <li>
-            <%= link_to 'Order History', :controller => 'orders', :action => 'index' %>
+            <%= link_to 'Brands', :controller => '/brands', :action => 'index' %>
           </li>
           <li>
-            <a href='#'>Newsletter</a>
+            <a href='#'>Sub Categories</a>
           </li>
         </ul>
       </div>

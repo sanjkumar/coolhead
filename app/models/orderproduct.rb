@@ -1,5 +1,7 @@
 class Orderproduct < ActiveRecord::Base
 
+  #scope :orderdate, where(:created_at => nil)
+
   attr_accessible :description, :price, :product_id, :quantity, :title
 
   belongs_to :order

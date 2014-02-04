@@ -2,8 +2,8 @@ Coolheadz::Application.routes.draw do
 
   root :to => 'site#index'
 
+  
   devise_for :admin_users, ActiveAdmin::Devise.config
-  ActiveAdmin.routes(self)
 
   resources :profiles
   resources :products
@@ -11,25 +11,35 @@ Coolheadz::Application.routes.draw do
 
   devise_for :users do
     resources :orders
-      ActiveAdmin.routes(self)
+    ActiveAdmin.routes(self)
   end
-
 
   resources :orders do
     resources :orderproducts
   end
 
+	ActiveAdmin.routes(self)
+
   get 'cart/index'
   get 'cart/show'
-  get 'home/index'
+
   get 'site/index'
   get 'site/about'
   get 'site/contact'
+  get 'site/delivery_returns'
+  get 'site/privacy_policy'
+  get 'site/safe_shopping'
+  get 'site/thank_you'
+
+  get 'orders/shipped_edit'
+  get 'orders/shipped'
   get 'orderproducts/index'
   get 'orderproducts/new'
   get 'orderproducts/show'
   get 'orderproducts/edit'
+  get 'products/category'
 
+  match '/search' => 'products#search'
   match '/cart' => 'cart#index'
   match '/cart' => 'cart#show'
   match '/cart/:id' => 'cart#add'
@@ -37,9 +47,16 @@ Coolheadz::Application.routes.draw do
   match '/clearCart' => 'cart#clearCart'
   match '/checkout' => 'cart#createOrder'
   match '/myprofile' => 'profiles#myprofile'
+
   match '/about' => 'site#about'
   match '/contact' => 'site#contact'
-  match '/search' => 'products#search'
+  match '/thank_you' => 'site#thank_you'
+  match '/delivery_returns' => 'site#delivery_returns'
+  match '/privacy_policy' => 'site#privacy_policy'
+  match '/safe_shopping' => 'site#safe_shopping'
+
+  match '/orders/shipped' => 'orders#shipped'
+  match '/category/:id' => 'products#category'
 
 
 

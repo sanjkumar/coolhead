@@ -10,6 +10,11 @@
         <% end %>
         <% total = 0 %>
 
+        <ul>
+          <% @cart.line_items.each do |item| %>
+              <li><%= item.quantity %> &times; <%= item.product.title %></li>
+        <% end %>
+        </ul>
 
 
       </table>
@@ -25,17 +30,7 @@
           <%= link_to 'Check Out', :controller => 'cart', :action => 'createOrder' %>
         </button>
       </p>
-      <br />
-      <br />
-      <br />
 
-      <h4>What would you like to do next?</h4>
-      <p>
-        Choose if you have a discount code or reward points you want to use or would like to estimate your delivery cost.
-      </p>
-      <label class='radio'>
-        <input type='radio' name='optionsRadios' id='optionsRadios2' value='option2'>
-        Estimate Shipping &amp; Taxes </label>
     </div>
 
     <div class='span3 col'>

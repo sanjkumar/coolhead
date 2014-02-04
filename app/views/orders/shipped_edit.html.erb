@@ -1,0 +1,46 @@
+<br />
+<div class='hero-unit'>
+  <h3>Do You want to ship this order?</h3>
+  <%= form_for(@order) do |f| %>
+      <%= f.label :status %>
+      <%= f.select :status, Order::STATUS_TYPES, prompt: 'select a status' %>
+      <%= f.submit 'Ship Order', class: 'btn btn-info'%>
+  <% end %>
+
+  <h2>Order Details:</h2>
+  <p>
+    <b>Name:</b>
+    <%= @order.name %>
+  </p>
+
+  <p>
+    <b>Email:</b>
+    <%= @order.email %>
+  </p>
+
+  <p>
+    <b>Pay type:</b>
+    <%= @order.pay_type %>
+  </p>
+
+  <p>
+    <b>Products:</b>
+
+  <ul>
+
+    <% for orderproduct in @order.orderproducts %>
+        <li><%= orderproduct.quantity %>&times;
+          <%= orderproduct.product.description %>
+          <b><%= number_to_currency(orderproduct.product.price, :unit => '&euro;') %></b>
+        </li>
+    <% end %>
+
+  </ul>
+  <b>Total Price: <%= number_to_currency(@order.total_price, :unit => '&euro;') %></b>
+  </p>
+
+  <p>An email will be sent to the customer to tell them the order is on the way</p>
+
+  <%= link_to 'Back', orders_url, class: 'btn' %>
+
+</div>

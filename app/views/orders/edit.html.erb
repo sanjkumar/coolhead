@@ -1,6 +1,21 @@
-<h1>Editing order</h1>
+<section class='header_text sub'>
+  <%= image_tag 'images/pageBanner.png', class: 'pageBanner', alt: 'Products' %>
 
-<%= render 'form' %>
+  <h4 class='title'><span class='text'>Edit Order</span></h4>
+</section>
 
-<%= link_to 'Show', @order %> |
-<%= link_to 'Back', orders_path %>
+  <%= render 'form' %>
+
+  <%= form_for(@order) do |f| %>
+      <%= f.label :status %><br />
+      <%= f.select :status, Order::STATUS_TYPES, prompt: 'select a status' %>
+      <%= f.submit 'update complaint', class: 'btn btn-info'%>
+  <% end %>
+
+
+  <%= link_to 'Show', @order, class: 'btn btn-mini' %> |
+  <%= link_to 'Back', orders_path, class: 'btn btn-mini' %>
+
+
+
+

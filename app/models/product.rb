@@ -1,7 +1,8 @@
 class Product < ActiveRecord::Base
   
   scope :unreleased, where(:created_at => nil)
-  
+  #default_scope :order => 'title'
+
   attr_accessible :category, :description, :image_url, :model, :price, :title, :product_id
   
   validates :title, :description, :image_url, :presence => true
@@ -12,6 +13,21 @@ class Product < ActiveRecord::Base
   has_many :orderproducts
   has_many :orders, :through => :orderproducts
 
-  has_and_belongs_to_many :brands
-  
+  has_one :brands
+
+    #has_and_belongs_to_many :categories
+
+  #before_destroy :ensure_not_referenced_by_any_line_item
+#  scope :by_category_id, lambda {|cid| joins(:categories).where(['categories.id =?', cid])}
+
+#  def ensure_not_referenced_by_any_line_item
+#
+ #   if line_items.count.zero?
+  #    return true
+   # else
+    #  errors.add(:base, 'Line Items present' )
+    #  return false
+   # end
+ # end
+
 end

@@ -65,8 +65,10 @@ class CartController < ApplicationController
           product = Product.find_by_id(id)
           @orderproduct = @order.orderproducts.build(:product_id => product.id, :title => product.title, 
           :description => product.description, :quantity => quantity, :price => product.price)
-          @orderproduct.save
+          @orderproduct.save #{redirect_to site_delivery_returns_path, :notice => ('Thank you for your order')}
         end
+
+        redirect_to :controller => :site, :action => :thank_you
   end
   
 end

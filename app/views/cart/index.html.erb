@@ -1,7 +1,7 @@
 <section class='header_text sub'>
   <%= image_tag 'images/pageBanner.png', class: 'pageBanner', alt: 'Products' %>
 
-  <h4><span>Cart Details</span></h4>
+  <h4 class='title'><span class='text'>Cart Details</span></h4>
 </section>
 <section class='main-content'>
   <div class='row'>
@@ -27,17 +27,18 @@
         </thead>
         <tbody>
 
-        <% @cart.each do | id, quantity | %>
+        <% @cart.each do |id, quantity| %>
             <% product = Product.find_by_id(id) %>
             <tr>
               <td>
                 <div class='image'>
                   <%= link_to (image_tag product.image_url, :style => 'height:100px'), product %>
-                </div></td>
+                </div>
+              </td>
               <td class='title'><%= link_to product.title, product %></td>
               <td class='price'><%= number_to_currency(product.price, :unit => '€') %></td>
               <td class='quantity'><%= quantity %>
-                <br />
+                <br/>
               </td>
               <td class='price'> <%= number_to_currency(quantity * product.price, :unit => '€') %> </td>
               <td><a href='/cart/remove/<%= product.id %>'>Remove</a></td>
@@ -49,13 +50,15 @@
           <td colspan='4'>
             <div class='total'>
               <strong>Total:</strong>
-            </div></td>
+            </div>
+          </td>
           <td>
             <div class='total'>
               <p class='cart-total right'>
                 <strong><%= number_to_currency(total, :unit => '€') %></strong>
               </p>
-            </div></td>
+            </div>
+          </td>
         </tr>
         </tbody>
       </table>
@@ -65,19 +68,25 @@
           <%= link_to 'Continue Shopping', :controller => :products %>
         </button>
         <button class='btn' type='button'>
-          <%= link_to 'Clear Cart', :controller => 'cart', :action => 'clearCart' %>
+          <%= link_to 'Clear Cart', :controller => '/cart', :action => 'clearCart' %>
         </button>
         <button class='btn btn-inverse' type='submit' id='checkout'>
-          <%= link_to 'Check Out', :controller => 'cart', :action => 'createOrder' %>
+          <% if user_signed_in? %>
+              <%= link_to 'Check Out', :controller => '/profiles', :action => 'myprofile' %>
+          <% else %>
+              <%= link_to('Login', new_user_session_path) %>
+          <% end %>
         </button>
       </p>
-      <br />
-      <br />
-      <br />
+      <br/>
+      <br/>
+      <br/>
 
       <h4>What would you like to do next?</h4>
+
       <p>
-        Choose if you have a discount code or reward points you want to use or would like to estimate your delivery cost.
+        Choose if you have a discount code or reward points you want to use or would like to estimate your delivery
+        cost.
       </p>
       <label class='radio'>
         <input type='radio' name='optionsRadios' id='optionsRadios2' value='option2'>

@@ -1,4 +1,7 @@
 class ProfilesController < ApplicationController
+
+ # before_filter :ensure_admin, :except => [:index, :show]
+
   # GET /profiles
   # GET /profiles.json
   def index

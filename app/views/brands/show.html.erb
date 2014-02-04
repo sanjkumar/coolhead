@@ -5,6 +5,16 @@
   <%= @brand.name %>
 </p>
 
+<p>
+  <b>Image url:</b>
+  <%= @brand.image_url %>
+</p>
+
+<p>
+  <b>Products:</b>
+  <%= @brand.products %>
+</p>
+
 
 <%= link_to 'Edit', edit_brand_path(@brand) %> |
 <%= link_to 'Back', brands_path %>

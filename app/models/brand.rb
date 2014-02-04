@@ -1,5 +1,7 @@
 class Brand < ActiveRecord::Base
-  attr_accessible :name
 
-  has_many :products
+  attr_accessible :image_url, :name, :product
+
+  belongs_to :products
+
 end

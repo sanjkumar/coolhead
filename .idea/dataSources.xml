@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="3460132659">
-    <data-source source="LOCAL" name="Rails Coolheadz: development" uuid="56e49dc6-35a6-4476-90ae-e79cffd30d11">
-      <driver-ref>sqlite.xerial</driver-ref>
-      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/db/development.sqlite3</jdbc-url>
-      <schema-pattern>*</schema-pattern>
-      <libraries />
-    </data-source>
+  <component name="DataSourceManagerImpl" format="xml" hash="4083198301">
     <data-source source="LOCAL" name="Rails Coolheadz: development" uuid="134cdff3-44f9-4561-bff8-bb0421de29cb">
       <driver-ref>sqlite.xerial</driver-ref>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
@@ -18,6 +11,9 @@
       <driver-ref>sqlite.xerial</driver-ref>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/db/development.sqlite3</jdbc-url>
+      <libraries />
+    </data-source>
+    <data-source source="LOCAL" name="Rails Coolheadz: development" uuid="56e49dc6-35a6-4476-90ae-e79cffd30d11">
       <libraries />
     </data-source>
   </component>
